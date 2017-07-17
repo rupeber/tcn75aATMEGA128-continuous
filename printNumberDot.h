@@ -1,0 +1,1 @@
+void printNumberDot(int number);

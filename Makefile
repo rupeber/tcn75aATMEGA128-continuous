@@ -29,7 +29,7 @@ SIZE = avr-size
 
 REMOVE = rm -f
 
-objects = uart.o i2c.o tcn75.o
+objects = uart.o i2c.o tcn75.o printNumber.o waitDelay.o printNumberDot.o
 
 .PHONY: clean indent
 .SILENT: help

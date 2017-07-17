@@ -6,6 +6,9 @@
 #include <util/delay.h>
 #include "tcn75.h"
 #include "uart.h"
+#include "printNumber.h"
+#include "waitDelay.h"
+#include "printNumberDot.h"
 
 
 int main(void)
@@ -14,6 +17,7 @@ int main(void)
 	uint8_t cfg;
 	char *string;
 	char *string2;
+	float lastDigit;
 
 	string = malloc(80);
 
@@ -46,11 +50,14 @@ int main(void)
 			string2= strcat(string," °C");
 			uart_printstrn(0, string2);
 			
+                        lastDigit=fmod(temp,10);
+                        printNumber(lastDigit);
+
 			if (temp >= 30){
-			  PORTC = 0b01111111;
+                          printNumberDot(lastDigit);
 		}
 			else {
-			  PORTC = 0b11111111;
+			  printNumber(lastDigit);
 			}
 		}
 		_delay_ms(2000);
